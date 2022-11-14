@@ -21,6 +21,8 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
+    - wheel
   run:
     - python
     - apscheduler >=3.2.0,<4.0.0
