@@ -57,7 +57,7 @@ about:
     command line tools. It is primarily meant to be run inside existing applications. That said, 
     APScheduler does provide some building blocks for you to build a scheduler service or to run a 
     dedicated scheduler process.
-  doc_url: https://apscheduler.readthedocs.io/en/3.x/
+  doc_url: https://apscheduler.readthedocs.io
   dev_url: https://github.com/viniciuschiele/flask-apscheduler
 
 extra:
