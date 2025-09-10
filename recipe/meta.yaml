@@ -1,41 +1,42 @@
 {% set name = "flask-apscheduler" %}
-{% set pkg_name = "Flask-APScheduler" %}
-{% set version = "1.12.4" %}
-{% set sha256 = "681dae34dc6cc9403ce674795e53abd0bff540472129cfd3d3c93e0e1d502da8" %}
-
+{% set version = "1.13.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ pkg_name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://github.com/viniciuschiele/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 37a0686fb4b598e7bc789fda4f49575e703aac6d6803ad19aa8babc5f76f4d0a
 
 build:
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
-  skip: True # [py<37]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: True # [py<38]
 
 requirements:
   host:
-    - python
     - pip
-    - setuptools
+    - python
     - wheel
+    - setuptools
   run:
     - python
+    - flask >=2.2.5,<4.0.0
     - apscheduler >=3.2.0,<4.0.0
-    - flask >=0.10.1
     - python-dateutil >=2.4.2
 
 test:
+  source_files:
+    - tests
   imports:
     - flask_apscheduler
+  commands:
+    - pip check
+    - pytest -v tests
   requires:
     - pip
-  commands:
-    - pip check 
+    - pytest
 
 about:
   home: https://github.com/viniciuschiele/flask-apscheduler
